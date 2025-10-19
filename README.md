@@ -5,11 +5,11 @@ features = ["no_std", "bit_hacks"]
 
 # Using the default std features (default)
 [dependencies]
-to_digits = "0.2.0"
+to_digits = "0.2.1"
 
 # Using no_std
 [dependencies]
-to_digits = { version = "0.2.0", features = ["no_std"] }
+to_digits = { version = "0.2.1", features = ["no_std"] }
 ```
 
 Example:
