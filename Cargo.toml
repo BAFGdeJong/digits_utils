@@ -1,0 +1,15 @@
+[package]
+name = "digits_utils"
+version = "0.1.5"
+edition = "2024"
+authors = ["Bas Antonius de Jong"]
+description = "Utilities for converting numbers to digits"
+license = "MIT"
+repository = "https://github.com/yourusername/digits_utils"
+categories = ["mathematics", "no-std", "value-formatting"]
+keywords = ["digits", "number", "array", "utility", "vector"]
+
+[features]
+default = ["std"]
+std = []
+no_std = []
