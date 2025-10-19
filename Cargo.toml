@@ -1,6 +1,6 @@
 [package]
 name = "digits_utils"
-version = "0.1.7"
+version = "0.2.0"
 edition = "2018"
 rust-version = "1.51"
 authors = ["Bas Antonius de Jong"]
@@ -12,7 +12,6 @@ keywords = ["digits", "number", "array", "utility", "vector"]
 readme = "README.md"
 
 [features]
-default = ["std"]
-std = []
+default = []
 no_std = []
 bit_hacks = []

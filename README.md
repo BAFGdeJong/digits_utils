@@ -1,21 +1,21 @@
 Easy-to-use methods for getting the array or vector of digits from integer types, with optional no_std and Vec support.
 
 ```
-features = ["std", "no_std", "bit_hacks"]
+features = ["no_std", "bit_hacks"]
 
 # Using the default std features (default)
 [dependencies]
-to_digits = "0.1.7"
+to_digits = "0.2.0"
 
 # Using no_std
 [dependencies]
-to_digits = { version = "0.1.7", default-features = false, features = ["no_std"] }
+to_digits = { version = "0.2.0", features = ["no_std"] }
 ```
 
 Example:
 ```rust
 use digits_utils::to_digits::ToDigits;
-use digits_utils::to_digits::ToDigitsVec;
+use digits_utils::to_digits::ToDigitsCollection;
 use digits_utils::to_digits::DigitSize
 
 // Can be of any signed / unsigned type
@@ -42,5 +42,5 @@ let digits = x.to_digits_vec();
 assert_eq!(reversed, vec![1, 2, 3]);
 
 let x: u8 = 123;
-let reversed = x.to_digits_reversed_vec();
+let reversed = x.to_digits_vec_reversed();
 assert_eq!(reversed, [3, 2, 1]);

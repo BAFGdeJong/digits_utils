@@ -1,5 +1,6 @@
 pub mod to_digits;
 pub mod digit_size;
+mod abs_assigner;
 
-#[cfg(feature = "std")]
-pub mod to_digits_vec;
+#[cfg(not(feature = "no_std"))]
+pub mod to_digits_collection;
