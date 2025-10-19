@@ -1,6 +1,6 @@
 [package]
 name = "digits_utils"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2018"
 rust-version = "1.51"
 authors = ["Bas Antonius de Jong"]
@@ -12,6 +12,30 @@ keywords = ["digits", "number", "array", "utility", "vector"]
 readme = "README.md"
 
 [features]
-default = []
+default = ["usize64", "enable_8_bit", "enable_16_bit", "enable_32_bit", "enable_64_bit", "enable_128_bit"]
+
+# Disables features that use std
 no_std = []
 bit_hacks = []
+
+# Use 8-bit platform usize and isize
+usize8 = []
+# Use 16-bit platform usize and isize
+usize16 = []
+# Use 32-bit platform usize and isize (for 32-bit systems)
+usize32 = []
+# Use 64-bit platform usize and isize (default for most targets)
+usize64 = []
+# Use 128-bit platform usize and isize (for experimental wide-pointer architectures)
+usize128 = []
+
+# Enables use for 8-bit integers.
+enable_8_bit   = []
+# Enables use for 16-bit integers.
+enable_16_bit  = []
+# Enables use for 32-bit integers.
+enable_32_bit  = []
+# Enables use for 64-bit integers.
+enable_64_bit  = []
+# Enables use for 128-bit integers.
+enable_128_bit = []
