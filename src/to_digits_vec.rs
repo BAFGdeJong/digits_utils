@@ -6,7 +6,7 @@ pub trait ToDigitsVec {
     /// ```
     /// let x: u8 = 123;
     /// let digits = x.to_digits_vec();
-    /// assert_eq!(reversed, vec![2, 5, 5]);
+    /// assert_eq!(reversed, vec![1, 2, 3]);
     /// ```
     fn to_digits_vec(&self) -> Vec<u8>;
 
@@ -16,7 +16,7 @@ pub trait ToDigitsVec {
     /// ```
     /// let x: u8 = 123;
     /// let reversed = x.to_digits_reversed_vec();
-    /// assert_eq!(reversed, [5, 2, 2]);
+    /// assert_eq!(reversed, [3, 2, 1]);
     /// ```
     fn to_digits_reversed_vec(&self) -> Vec<u8>;
 }
