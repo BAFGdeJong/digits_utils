@@ -37,7 +37,7 @@ pub trait ToDigitsCollection {
     ///
     /// ```
     /// let x: u8 = 123;
-    /// let reversed = x.to_digits_reversed_vec();
+    /// let reversed = x.to_digits_vec_reversed();
     /// assert_eq!(reversed, [3, 2, 1]);
     /// ```
     fn to_digits_vec_reversed(&self) -> Vec<u8>;
