@@ -39,9 +39,17 @@ macro_rules! impl_to_digits_signed {
                 #[inline(always)]
                 fn to_digits(&self) -> [u8; $ns] {
                     let mut b = [0; $ns];
+
+                    #[cfg(feature = "bit_hacks")]
+                    let mut v: $t = {
+                        let mask = *self >> (<$t>::BITS - 1);
+                        (*self ^ mask) - mask
+                    };
+
+                    #[cfg(not(feature = "bit_hacks"))]
                     let mut v = if *self < 0 { -(*self) } else { *self };
 
-                    let mut i = b.len();
+                    let mut i = $ns;
 
                     while v > 0 && i > 0 {
                         i -= 1;
@@ -55,11 +63,19 @@ macro_rules! impl_to_digits_signed {
                 #[inline(always)]
                 fn to_digits_reversed(&self) -> [u8; $ns] {
                     let mut b = [0; $ns];
+
+                    #[cfg(feature = "bit_hacks")]
+                    let mut v: $t = {
+                        let mask = *self >> (<$t>::BITS - 1);
+                        (*self ^ mask) - mask
+                    };
+
+                    #[cfg(not(feature = "bit_hacks"))]
                     let mut v = if *self < 0 { -(*self) } else { *self };
 
                     let mut i= 0;
 
-                    while v > 0 && i < b.len() {
+                    while v > 0 && i < $ns {
                         b[i] = (v % 10) as u8;
                         v /= 10;
                         i += 1;
@@ -80,7 +96,7 @@ macro_rules! impl_to_digits_unsigned {
                 fn to_digits(&self) -> [u8; $ns] {
                     let mut b = [0; $ns];
                     let mut v = *self;
-                    let mut i = b.len();
+                    let mut i = $ns;
 
                     while v > 0 && i > 0 {
                         i -= 1;
@@ -94,11 +110,10 @@ macro_rules! impl_to_digits_unsigned {
                 #[inline(always)]
                 fn to_digits_reversed(&self) -> [u8; $ns] {
                     let mut b = [0; $ns];
-                    let mut v = self.clone();
-
+                    let mut v = *self;
                     let mut i = 0;
 
-                    while v > 0 && i < b.len() {
+                    while v > 0 && i < $ns {
                         b[i] = (v % 10) as u8;
                         v /= 10;
                         i += 1;
