@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod to_digits_tests {
     use std::collections::LinkedList;
-    use digits_utils::to_digits_collection::ToDigitsCollection;
+    use digits_utils::to_digits::ToDigitsCollection;
 
     #[test]
     fn test_to_digits_collection() {
@@ -13,7 +13,7 @@ mod to_digits_tests {
         y.push_back(one);
         y.push_back(two);
         y.push_back(three);
-        let z: LinkedList<u8> = x.to_digits_collection();
+        let z = x.to_digits_into::<LinkedList<u8>>();
         assert_eq!(z, y);
     }
 

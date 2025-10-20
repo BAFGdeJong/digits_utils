@@ -1,40 +1,6 @@
-use crate::abs_assigner;
+use super::ToDigits;
 
-/// Converts a number into an array of its digits.
-///
-/// `SIZE` specifies the length of the array. Leading zeros are used if the
-/// number has fewer digits than `SIZE`.
-pub trait ToDigits<const SIZE: usize> {
-    /// Returns the digits in **normal order** (most significant first).
-    /// # Examples
-    ///
-    /// ```
-    /// let x: u8 = 123;
-    /// let digits: [u8; u8::MAX_DIGITS] = x.to_digits();
-    /// assert_eq!(digits, [1, 2, 3]);
-    ///
-    /// let x: u8 = 123;
-    /// let digits: [u8; 2] = x.to_digits();
-    /// assert_eq!(digits, [2, 3]);
-    /// ```
-    fn to_digits(&self) -> [u8; SIZE];
-
-    /// Returns the digits in **reversed order** (the least significant first).
-    /// # Examples
-    ///
-    /// ```
-    /// let x: u8 = 123;
-    /// let reversed: [u8; u8::MAX_DIGITS] = x.to_digits_reversed();
-    /// assert_eq!(reversed, [3, 2, 1]);
-    ///
-    /// let x: u8 = 123;
-    /// let reversed: [u8; 2] = x.to_digits_reversed();
-    /// assert_eq!(reversed, [3, 2]);
-    /// ```
-    fn to_digits_reversed(&self) -> [u8; SIZE];
-}
-
-macro_rules! impl_to_digits {
+macro_rules! impl_to_digits{
     (($($ns:literal),*), $t:ty, $signed:tt) => {
         $(
             impl ToDigits<$ns> for $t {

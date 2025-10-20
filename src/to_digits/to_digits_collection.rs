@@ -1,70 +1,12 @@
-use crate::abs_assigner;
+use super::ToDigitsCollection;
+
 use std::iter::FromIterator;
-
-/// Converts a number into a `Vec<u8>` of its digits.
-pub trait ToDigitsCollection {
-    /// Returns the digits in **normal order** (most significant first) as a `Vec<u8>`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// let x: u8 = 123;
-    /// let digits = x.to_digits_vec();
-    /// assert_eq!(reversed, vec![1, 2, 3]);
-    /// ```
-    fn to_digits_vec(&self) -> Vec<u8>;
-
-    /// Returns the digits of the integer in **normal order** (most significant first)
-    /// as a collection of type `T`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use std::collections::LinkedList;
-    ///
-    /// let x: u8 = 123;
-    /// let digits: LinkedList<u8> = x.to_digits_collection();
-    /// let digits_vec: Vec<u8> = digits.into_iter().collect();
-    /// assert_eq!(digits_vec, vec![1, 2, 3]);
-    /// ```
-    fn to_digits_collection<T>(&self) -> T
-    where
-        T: FromIterator<u8>;
-
-    /// Returns the digits in **reversed order** (the least significant first) as a `Vec<u8>`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// let x: u8 = 123;
-    /// let reversed = x.to_digits_vec_reversed();
-    /// assert_eq!(reversed, [3, 2, 1]);
-    /// ```
-    fn to_digits_vec_reversed(&self) -> Vec<u8>;
-
-    /// Returns the digits of the integer in **reversed order** (the least significant first)
-    /// as a collection of type `T`.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use std::collections::LinkedList;
-    ///
-    /// let x: u8 = 123;
-    /// let digits: LinkedList<u8> = x.to_digits_collection_reversed();
-    /// let digits_vec: Vec<u8> = digits.into_iter().collect();
-    /// assert_eq!(digits_vec, vec![3, 2, 1]);
-    /// ```
-    fn to_digits_collection_reversed<T>(&self) -> T
-    where
-        T: FromIterator<u8>;
-}
 
 macro_rules! impl_to_digits_collection {
     ($t:ty, $signed:tt) => {
         impl ToDigitsCollection for $t {
             #[inline(always)]
-            fn to_digits_vec(&self) -> Vec<u8> {
+            fn to_digits_into_vec(&self) -> Vec<u8> {
                 let mut b = Vec::new();
                 let mut v = abs_assigner!($signed, *self, $t);
 
@@ -78,7 +20,7 @@ macro_rules! impl_to_digits_collection {
             }
 
             #[inline(always)]
-            fn to_digits_collection<T>(&self) -> T where T: FromIterator<u8> {
+            fn to_digits_into<T>(&self) -> T where T: FromIterator<u8> {
                 let mut b = Vec::new();
                 let mut v = abs_assigner!($signed, *self, $t);
 
@@ -92,7 +34,7 @@ macro_rules! impl_to_digits_collection {
             }
 
             #[inline(always)]
-            fn to_digits_vec_reversed(&self) -> Vec<u8>{
+            fn to_digits_reversed_into_vec(&self) -> Vec<u8>{
                 let mut b = Vec::new();
                 let mut v = abs_assigner!($signed, *self, $t);
 
@@ -105,7 +47,7 @@ macro_rules! impl_to_digits_collection {
             }
 
             #[inline(always)]
-            fn to_digits_collection_reversed<T>(&self) -> T where T: FromIterator<u8> {
+            fn to_digits_reversed_into<T>(&self) -> T where T: FromIterator<u8> {
                 let mut b = Vec::new();
                 let mut v = abs_assigner!($signed, *self, $t);
 

@@ -1,8 +1,4 @@
-/// Provides the maximum number of digits for a type.
-pub trait DigitSize {
-    /// The maximum number of decimal digits this type can represent.
-    const MAX_DIGITS: usize;
-}
+use super::DigitSize;
 
 #[cfg(feature = "enable_8_bit")]
 impl DigitSize for i8    { const MAX_DIGITS: usize = 3; }

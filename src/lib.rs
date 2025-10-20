@@ -18,7 +18,3 @@ compile_error!("You must enable exactly one of the usize features: usize8, usize
 
 pub mod to_digits;
 pub mod digit_size;
-mod abs_assigner;
-
-#[cfg(not(feature = "no_std"))]
-pub mod to_digits_collection;
