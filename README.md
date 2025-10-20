@@ -44,8 +44,8 @@ use digits_utils::digit_size::DigitSize;
 // Can be of any signed / unsigned type
 // Array
 let x: i8 = 123;
-let digits: [u8; i8::MAX_DIGITS];
-assert_eq!(x.to_digits(), [1, 2, 3]);
+let digits: [u8; i8::MAX_DIGITS] = x.to_digits();
+assert_eq!(digits, [1, 2, 3]);
 
 let x: i8 = -123;
 assert_eq!(x.to_digits(), [1, 2, 3]);
